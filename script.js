@@ -1,7 +1,17 @@
 const pixelBoard = document.getElementById('pixel-board');
 
-function setColors() {
-  const colorList = ['black', 'red', 'blue', 'green'];
+function getRandomColors() {
+  const colorList = ['rgb(0, 0, 0)'];
+  for (let color = 0; color < 3; color += 1) {
+    const red = Math.floor(Math.random() * 255);
+    const green = Math.floor(Math.random() * 255);
+    const blue = Math.floor(Math.random() * 255);
+    colorList.push(`rgb(${red}, ${green}, ${blue})`);
+  }
+  return colorList;
+}
+
+function setColors(colorList) {
   const colors = document.getElementsByClassName('color');
   colors[0].classList.add('selected');
   for (let index = 0; index < colors.length; index += 1) {
@@ -95,7 +105,7 @@ function eventHandler() {
 }
 
 window.onload = () => {
-  setColors();
+  setColors(getRandomColors());
   setPixelBoard(5);
   eventHandler();
 };
