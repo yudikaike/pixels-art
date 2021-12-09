@@ -21,7 +21,30 @@ function setPixelBoard() {
   }
 }
 
+function selectColor() {
+  const colorPalette = document.getElementById('color-palette');
+  colorPalette.addEventListener('click', (event) => {
+    const colors = document.getElementsByClassName('color');
+    const color = event.target;
+    if (color.className !== 'color') {
+      return;
+    }
+    for (let index = 0; index < colors.length; index += 1) {
+      if (colors[index] !== color) {
+        colors[index].classList.remove('selected');
+      } else {
+        color.classList.add('selected');
+      }
+    }
+  });
+}
+
+function eventHandler() {
+  selectColor();
+}
+
 window.onload = () => {
   setColors();
   setPixelBoard();
+  eventHandler();
 };
