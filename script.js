@@ -1,3 +1,5 @@
+const pixelBoard = document.getElementById('pixel-board');
+
 function setColors() {
   const colorList = ['black', 'red', 'blue', 'green'];
   const colors = document.getElementsByClassName('color');
@@ -7,12 +9,11 @@ function setColors() {
   }
 }
 
-function setPixelBoard() {
-  const pixelBoard = document.getElementById('pixel-board');
-  for (let row = 0; row < 5; row += 1) {
+function setPixelBoard(size) {
+  for (let row = 0; row < size; row += 1) {
     const pixelRow = document.createElement('div');
     pixelRow.classList.add('pixelRow');
-    for (let column = 0; column < 5; column += 1) {
+    for (let column = 0; column < size; column += 1) {
       const pixel = document.createElement('div');
       pixel.classList.add('pixel');
       pixelRow.appendChild(pixel);
@@ -40,7 +41,6 @@ function selectColor() {
 }
 
 function paintPixel() {
-  const pixelBoard = document.getElementById('pixel-board');
   pixelBoard.addEventListener('click', (event) => {
     const pixel = event.target;
     const color = document.getElementsByClassName('selected')[0];
@@ -61,14 +61,38 @@ function clearPixels() {
   });
 }
 
+function removePixelBoard() {
+  pixelBoard.innerHTML = '';
+}
+
+function setNewPixelBoard() {
+  const size = document.getElementById('board-size').value;
+  if (size !== '') {
+    setPixelBoard(size);
+  } else {
+    alert('Board inválido!');
+    setPixelBoard(5);
+  }
+}
+
+function generateNewBoard() {
+  const generateBoard = document.getElementById('generate-board');
+  generateBoard.addEventListener('click', () => {
+    removePixelBoard();
+    setNewPixelBoard();
+    paintPixel();
+  });
+}
+
 function eventHandler() {
   selectColor();
   paintPixel();
   clearPixels();
+  generateNewBoard();
 }
 
 window.onload = () => {
   setColors();
-  setPixelBoard();
+  setPixelBoard(5);
   eventHandler();
 };
