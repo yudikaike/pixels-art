@@ -39,8 +39,21 @@ function selectColor() {
   });
 }
 
+function paintPixel() {
+  const pixelBoard = document.getElementById('pixel-board');
+  pixelBoard.addEventListener('click', (event) => {
+    const pixel = event.target;
+    const color = document.getElementsByClassName('selected')[0];
+    if (pixel.className !== 'pixel') {
+      return;
+    }
+    pixel.style.backgroundColor = color.style.backgroundColor;
+  });
+}
+
 function eventHandler() {
   selectColor();
+  paintPixel();
 }
 
 window.onload = () => {
