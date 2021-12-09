@@ -51,9 +51,20 @@ function paintPixel() {
   });
 }
 
+function clearPixels() {
+  const clearBoard = document.getElementById('clear-board');
+  clearBoard.addEventListener('click', () => {
+    const pixels = document.getElementsByClassName('pixel');
+    for (let index = 0; index < pixels.length; index += 1) {
+      pixels[index].style.backgroundColor = 'white';
+    }
+  });
+}
+
 function eventHandler() {
   selectColor();
   paintPixel();
+  clearPixels();
 }
 
 window.onload = () => {
