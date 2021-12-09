@@ -6,4 +6,21 @@ function setColors() {
   }
 }
 
-window.onload = setColors;
+function setPixelBoard() {
+  const pixelBoard = document.getElementById('pixel-board');
+  for (let row = 0; row < 5; row += 1) {
+    const pixelRow = document.createElement('div');
+    pixelRow.classList.add('pixelRow');
+    for (let column = 0; column < 5; column += 1) {
+      const pixel = document.createElement('div');
+      pixel.classList.add('pixel');
+      pixelRow.appendChild(pixel);
+    }
+    pixelBoard.appendChild(pixelRow);
+  }
+}
+
+window.onload = () => {
+  setColors();
+  setPixelBoard();
+};
