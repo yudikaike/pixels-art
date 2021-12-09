@@ -67,11 +67,14 @@ function removePixelBoard() {
 
 function setNewPixelBoard() {
   const size = document.getElementById('board-size').value;
-  if (size !== '') {
+  if (size !== '' && size >= 5 && size <= 50) {
     setPixelBoard(size);
-  } else {
+  } else if (size > 50) {
+    setPixelBoard(50);
     alert('Board inválido!');
+  } else {
     setPixelBoard(5);
+    alert('Board inválido!');
   }
 }
 
